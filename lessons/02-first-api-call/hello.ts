@@ -1,18 +1,21 @@
-// Урок 2: первый вызов локальной модели через Ollama
-const OLLAMA_URL = process.env.OLLAMA_URL ?? "http://localhost:11434";
-const MODEL = process.env.OLLAMA_MODEL ?? "qwen2.5:3b";
+const res = await fetch("http://localhost:11434/api/chat", {
+  method: "POST",
+  body: JSON.stringify({
+    model: "qwen2.5:3b",
+    stream: false,
+    options: { temperature: 0.7 },
+    messages: [
+      {
+        role: "system",
+        content: "Ты дружелюбный помощник. Отвечай по-русски, коротко.",
+      },
+      {
+        role: "user",
+        content: "Объясни, что такое React, в двух предложениях.",
+      },
+    ],
+  }),
+})
 
-type Message = { role: "system" | "user" | "assistant"; content: string };
-
-async function chat(messages: Message[]): Promise<string> {
-  const res = await fetch(`${OLLAMA_URL}/api/chat`, {
-    method: "POST",
-    body: JSON.stringify({ model: MODEL, stream: false, messages }),
-  });
-  if (!res.ok) throw new Error(`Ollama error: ${res.status}`);
-  const data = await res.json();
-  return data.message.content;
-}
-
-const answer = await chat([{ role: "user", content: "Привет! Кто ты?" }]);
-console.log(answer);
+const data = await res.json()
+console.log(data.message.content)
