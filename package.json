@@ -7,15 +7,24 @@
     "lesson2": "tsx lessons/02-first-api-call/hello.ts",
     "lesson3": "tsx lessons/03-prompting/classify.ts",
     "lesson4": "tsx lessons/04-chat-ui/server.ts",
-    "lesson5": "tsx lessons/05-ai-sdk/server.ts"
+    "lesson5": "tsx lessons/05-ai-sdk/server.ts",
+    "lesson6:server": "tsx lessons/06-react-chat/server.ts",
+    "lesson6:web": "vite lessons/06-react-chat"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "tsx": "^4.19.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^3.0.57",
-    "ai": "^7.0.116"
+    "@ai-sdk/react": "^4.0.119",
+    "ai": "^7.0.116",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }
