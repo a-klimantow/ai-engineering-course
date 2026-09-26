@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "lesson2": "tsx lessons/02-first-api-call/hello.ts",
-    "lesson3": "tsx lessons/03-prompting/classify.ts"
+    "lesson3": "tsx lessons/03-prompting/classify.ts",
+    "lesson4": "tsx lessons/04-chat-ui/server.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",

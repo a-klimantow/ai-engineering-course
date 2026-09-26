@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Мой чат</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 640px;
+        margin: 40px auto;
+        padding: 0 16px;
+      }
+      #messages {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .msg {
+        padding: 8px 12px;
+        border-radius: 12px;
+        white-space: pre-wrap;
+        max-width: 80%;
+      }
+      .user {
+        background: #d8e8ff;
+        align-self: flex-end;
+      }
+      .assistant {
+        background: #eee;
+        align-self: flex-start;
+      }
+      form {
+        display: flex;
+        gap: 8px;
+      }
+      input {
+        flex: 1;
+        padding: 8px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Мой чат</h1>
+    <div id="messages"></div>
+    <form id="form">
+      <input
+        id="input"
+        placeholder="Напиши сообщение..."
+        autocomplete="off"
+      />
+      <button>Отправить</button>
+      <button
+        type="button"
+        id="stop"
+      >
+        Stop
+      </button>
+    </form>
+
+    <script type="module">
+      const history = [
+        { role: "system", content: "Отвечай по-русски, коротко." },
+      ]
+      const messagesEl = document.getElementById("messages")
+      const form = document.getElementById("form")
+      const input = document.getElementById("input")
+      const stopBtn = document.getElementById("stop")
+      let controller = null
+
+      stopBtn.addEventListener("click", () => controller?.abort())
+
+      // Добавляет «пузырь» сообщения на страницу и возвращает его
+      function addBubble(role, text) {
+        const div = document.createElement("div")
+        div.className = `msg ${role}`
+        div.textContent = text
+        messagesEl.append(div)
+        return div
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        const text = input.value.trim()
+        if (!text) return
+        input.value = ""
+
+        history.push({ role: "user", content: text })
+        addBubble("user", text)
+        const bubble = addBubble("assistant", "")
+
+        controller = new AbortController()
+
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          body: JSON.stringify({ messages: history }),
+          signal: controller.signal,
+        })
+
+        // Читаем ответ по кусочкам и сразу дописываем в пузырь
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let answer = ""
+
+        try {
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+            answer += decoder.decode(value, { stream: true })
+            bubble.textContent = answer
+          }
+        } catch (error) {
+          bubble.textContent = answer + " [остановлено]"
+        }
+
+        history.push({ role: "assistant", content: answer })
+      })
+    </script>
+  </body>
+</html>
