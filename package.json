@@ -1,0 +1,14 @@
+{
+  "name": "ai-engineering-course",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lesson2": "tsx lessons/02-first-api-call/hello.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
