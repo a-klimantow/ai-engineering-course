@@ -9,7 +9,8 @@
     "lesson4": "tsx lessons/04-chat-ui/server.ts",
     "lesson5": "tsx lessons/05-ai-sdk/server.ts",
     "lesson6:server": "tsx lessons/06-react-chat/server.ts",
-    "lesson6:web": "vite lessons/06-react-chat"
+    "lesson6:web": "vite lessons/06-react-chat",
+    "lesson7": "tsx lessons/07-structured-output/extract.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",
