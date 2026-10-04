@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { useChat } from "@ai-sdk/react";
+import { useState } from "react"
+import { useChat } from "@ai-sdk/react"
 
 export function App() {
   // useChat хранит историю, шлёт запросы на /api/chat и читает стрим
-  const { messages, sendMessage, status, stop } = useChat();
-  const [input, setInput] = useState("");
+  const { messages, sendMessage, status, stop } = useChat()
+  const [input, setInput] = useState("")
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!input.trim()) return;
-    sendMessage({ text: input });
-    setInput("");
+    e.preventDefault()
+    if (!input.trim()) return
+    sendMessage({ text: input })
+    setInput("")
   }
 
   return (
@@ -44,5 +44,5 @@ export function App() {
         ) : null}
       </form>
     </>
-  );
+  )
 }

@@ -33,7 +33,9 @@ const server = http.createServer(async (req, res) => {
       messages: await convertToModelMessages(messages),
       abortSignal: controller.signal,
       onEnd: ({ usage }) => {
-        console.log(`Токены: вход ${usage.inputTokens}, выход ${usage.outputTokens}`)
+        console.log(
+          `Токены: вход ${usage.inputTokens}, выход ${usage.outputTokens}`,
+        )
       },
     })
 

@@ -55,7 +55,9 @@ function ReviewCard({ text, mark }: { text: string; mark: Mark }) {
     <div className="card">
       <p>{text}</p>
       {mark === "loading" && <small>Размечаю...</small>}
-      {mark === "error" && <small className="error">Не получилось разметить</small>}
+      {mark === "error" && (
+        <small className="error">Не получилось разметить</small>
+      )}
       {typeof mark === "object" && (
         <>
           <div className="badges">

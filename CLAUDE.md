@@ -30,6 +30,7 @@ There are no tests or linter. Add a `lessonN` script to `package.json` for each 
 - Lessons build on each other: raw `fetch` to Ollama's `/api/chat` (lessons 2–3) → a hand-written `node:http` server with streaming (4) → the same server on the Vercel AI SDK (5) → React + `useChat` (6). Servers use plain `node:http`, not Express. Each lesson server has its own port (3000+), so they can run side by side.
 - The AI SDK talks to Ollama through `@ai-sdk/openai-compatible` at `http://localhost:11434/v1`.
 - **The AI SDK is v7 (`ai@7`, `@ai-sdk/react@4`)**, and its API differs from older docs and training data: `onEnd` instead of `onFinish`, system prompts via `instructions`, and standalone helpers such as `toTextStream`/`pipeTextStreamToResponse` and `toUIMessageStream`/`pipeUIMessageStreamToResponse`. Check the types in `node_modules/ai` before writing SDK code.
+- Code style: no semicolons, Prettier defaults otherwise (`.prettierrc`). Prettier is not a dependency; format with `npx prettier@3 --write`.
 - ESM only (`"type": "module"`), TypeScript 7, `allowImportingTsExtensions`, top-level `await` is fine.
 
 ## Teaching style
