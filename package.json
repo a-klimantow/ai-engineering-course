@@ -13,7 +13,8 @@
     "lesson7": "tsx lessons/07-structured-output/extract.ts",
     "lesson7:sdk": "tsx lessons/07-structured-output/extract-sdk.ts",
     "inbox:server": "tsx projects/feedback-inbox/server.ts",
-    "inbox:web": "vite projects/feedback-inbox"
+    "inbox:web": "vite projects/feedback-inbox",
+    "inbox:ask": "tsx projects/feedback-inbox/ask.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",
