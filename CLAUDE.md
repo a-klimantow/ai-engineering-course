@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A self-paced AI engineering course (frontend focus, TypeScript) where Claude acts as the teacher. Content, code comments, NOTES.md and commit messages are in Russian. Progress lives in the table in `README.md`: the ⏳ row is the current module, so "давай дальше" means continuing from there. When a module is done, update the table.
 
-Each lesson is a folder `lessons/NN-topic/` with runnable `.ts` files and a `NOTES.md` summary. Module final projects go in `projects/` (still empty). Commit messages look like `Урок N: <что сделано>`.
+Each lesson is a folder `lessons/NN-topic/` with runnable `.ts` files and a `NOTES.md` summary. From lesson 8 on, lesson code goes into the running project `projects/feedback-inbox/` (an AI feedback inbox); the lesson folder then holds only `LESSON.md` and `NOTES.md`. The per-lesson plan, the current lesson ("Сейчас") and the lesson format are in `README.md`. Commit messages look like `Урок N: <что сделано>`.
 
 ## Commands
 
@@ -16,6 +16,8 @@ ollama pull qwen2.5:3b          # the model the lesson code uses (README also me
 npm run lesson2                 # ...lesson5: each runs one lesson via tsx
 npm run lesson6:server          # lesson 6 needs two terminals: API server on :3002
 npm run lesson6:web             # Vite dev server, proxies /api -> :3002
+npm run inbox:server            # running project projects/feedback-inbox: API server on :3003
+npm run inbox:web               # its Vite dev server on :5174, proxies /api -> :3003
 npx tsx lessons/<dir>/<file>.ts # run any single lesson file
 npx tsc                         # type-check lessons/ and projects/ (noEmit)
 ```
